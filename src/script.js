@@ -60,10 +60,17 @@ const generateGalaxy = () =>
         const i3 = i * 3;
 
         // Position
+        // from 0 to radius
         const radius = Math.random() * parameters.radius;
+        // We multiply radius by spin to give the spin effect
         const spinAngle = radius * parameters.spin;
+        // branchAngle allows to give position of lines around a full circle
         const branchAngle = (i % parameters.branches) / parameters.branches * Math.PI * 2;
 
+        // To avoid perfectly aligned particles, we add some randmoness thanks to Math.random. To have a more convincing result, we add Math.pow (between 0 and 1)
+        // to crush the value.
+        // The more power you apply, the closest to 0 it will get.
+        // The problem is that you can't use a negative value with Math.pow(). What we will do is calculate the power then multiply it by -1 randomly.
         const randomX = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : - 1) * parameters.randomness * radius;
         const randomY = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : - 1) * parameters.randomness * radius;
         const randomZ = Math.pow(Math.random(), parameters.randomnessPower) * (Math.random() < 0.5 ? 1 : - 1) * parameters.randomness * radius;
